@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/auth/login:
+    post:
+      summary: 'Method autheticate'
+      operationId: methodAutheticate
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: jameson36@example.com
+                password:
+                  type: string
+                  description: ''
+                  example: est
+              required:
+                - email
+                - password
+      security: []
+  /api/auth/register:
+    post:
+      summary: 'Method register'
+      operationId: methodRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: uborfvvtw
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: rkovacek@example.com
+                password:
+                  type: string
+                  description: ''
+                  example: non
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/users:
+    get:
+      summary: 'Method index'
+      operationId: methodIndex
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/test-api:
+    get:
+      summary: 'Get User Information'
+      operationId: getUserInformation
+      description: 'Test User deatils'
+      parameters:
+        -
+          in: query
+          name: is
+          description: notthingclear
+          example: sequi
+          required: false
+          schema:
+            type: string
+            description: notthingclear
+            example: sequi
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  message: Okay
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Okay
+      tags:
+        - 'Resource management'
+tags:
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: 'Resource management'
+    description: "\nAPIs for managing resources"
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []
